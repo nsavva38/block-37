@@ -4,7 +4,7 @@
 GET {{host}}/users
 
 ### Get user
-GET {{host}}/user/3
+GET {{host}}/users/3
 
 
 ### Get /playlists
@@ -15,6 +15,14 @@ GET {{host}}/playlists/3
 
 ### Post a playlist
 POST {{host}}/playlists
+Content-Type: application/json
+
+{
+  "name": "Made Track",
+  "description": "cool tunes",
+  "ownerId": "2",
+  "trackNames": ["song1", "song2", "song3"] 
+}
 
 
 

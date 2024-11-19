@@ -9,9 +9,9 @@ const prisma = require("../prisma");
 router.get("/", async ( req, res, next) => {
   try {
     const users = await prisma.user.findMany();
-    res.json(users);
-  } catch (e) {
-    next(e);
+    res.status(201).send({message: 'Found all users', users});
+  } catch(err){
+    console.error('couldnt get all users', err);
   }
 });
 

@@ -29,18 +29,21 @@ router.get("/:id", async (req, res, next) => {
 });
 
 
-router.post("/playlists", async ( req, res, next) => {
+router.post("/", async ( req, res, next) => {
   try {
-    const { name, description, ownerId, trackIds } = req.body;
+    const { name, description, ownerId, trackNames } = req.body;
 
-    const tracks = trackIds.map((id) => ({ id: +id}));
+    const tracks = trackNames.map((trackName) => ({
+      where: { name: trackName },
+      create: { name: trackName },
+    }));
 
     const playlist = await prisma.playlist.create({
       data: {
         name,
         description,
         ownerId: +ownerId,
-        tracks: { connect: tracks}
+        tracks: { connectOrCreate: tracks}
       },
       include: {
         owner: true,
