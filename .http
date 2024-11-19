@@ -1,0 +1,7 @@
+@host = http://localhost:3000
+
+### Get users
+GET {{host}}/users
+
+### Get user
+GET {{host}}/user/3
