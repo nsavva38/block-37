@@ -5,32 +5,7 @@ const PORT = 3000;
 app.use(require("morgan")("dev"));
 app.use(express.json);
 app.use("/users", require("./routes/users"));
-
-const prisma = require("./prisma");
-app.post("/playlists", async ( req, res, next) => {
-  try {
-    const { name, description, ownerId, trackIds } = req.body;
-
-    const tracks = trackIds.map((id) => ({ id: +id}));
-
-    const playlist = await prisma.playlist.create({
-      data: {
-        name,
-        description,
-        ownerId: +ownerId,
-        tracks: { connect: tracks}
-      },
-      include: {
-        owner: true,
-        tracks: true,
-      },
-    });
-    res.status(201).json(playlist);
-  } catch (e) {
-    next(e);
-  }
-});
-
+app.use("/playlists", require("./routes/playlists"));
 
 
 app.use((req, res, next) => {
