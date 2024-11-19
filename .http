@@ -5,3 +5,21 @@ GET {{host}}/users
 
 ### Get user
 GET {{host}}/user/3
+
+
+### Get /playlists
+GET {{host}}/playlists
+
+### Get single playlist
+GET {{host}}/playlists/3
+
+### Post a playlist
+POST {{host}}/playlists
+
+
+
+### Get tracks
+GET {{host}}/tracks
+
+### Get single track
+GET {{host}}/tracks/3
